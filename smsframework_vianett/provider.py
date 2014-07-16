@@ -61,7 +61,7 @@ class VianettProvider(IProvider):
     # region Public
 
     def api_request(self, method, **params):
-        """ Raw request to Clickatell API
+        """ Raw request to Vianett API
 
             :rtype: str
             :raises RequestError: Request error

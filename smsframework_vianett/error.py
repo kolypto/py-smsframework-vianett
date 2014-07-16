@@ -1,5 +1,3 @@
-""" Clickatell error codes """
-
 from smsframework.exc import *
 
 

@@ -25,7 +25,9 @@ setup(
         ]
     },
     tests_require=[
-        'nose'
+        'nose',
+        'freezegun',
+        'flask'
     ],
     include_package_data=True,
 

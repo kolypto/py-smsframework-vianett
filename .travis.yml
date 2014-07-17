@@ -5,6 +5,6 @@ python:
 
 install:
   - "pip install -e '.[receiver]'"
-  - "pip install nose freezegun flask"
 
-script: nosetests
+script: ./setup.py test
+

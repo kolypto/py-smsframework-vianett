@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     # http://pythonhosted.org/setuptools/setuptools.html
     name='smsframework-vianett',
-    version='0.0.1',
+    version='0.0.1-1',
     author='Mark Vartanyan',
     author_email='kolypto@gmail.com',
 
@@ -24,13 +24,9 @@ setup(
     extras_require={
         'receiver': [  # sms receiving
             'flask >= 0.10',
-        ]
+        ],
+        '_dev': ['wheel', 'nose', 'freezegun', 'flask'],
     },
-    tests_require=[
-        'nose',
-        'freezegun',
-        'flask'
-    ],
     test_suite='nose.collector',
     include_package_data=True,
 

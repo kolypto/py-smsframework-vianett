@@ -35,7 +35,7 @@ class VianettProviderTest(unittest.TestCase):
     def test_blueprints(self):
         """ Test blueprints """
         self.assertEqual(
-            self.gw.receiver_blueprints().keys(),
+            list(self.gw.receiver_blueprints().keys()),
             ['main']
         )
 

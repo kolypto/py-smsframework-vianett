@@ -1,4 +1,6 @@
 [![Build Status](https://api.travis-ci.org/kolypto/py-smsframework-vianett.png?branch=master)](https://travis-ci.org/kolypto/py-smsframework-vianett)
+[![Pythons](https://img.shields.io/badge/python-2.7%20%7C%203.4%E2%80%933.7%20%7C%20pypy-blue.svg)](.travis.yml)
+
 
 SMSframework Vianett Provider
 ================================

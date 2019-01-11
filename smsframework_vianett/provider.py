@@ -1,7 +1,11 @@
 from smsframework import IProvider, exc
 from . import error
 from .api import VianettHttpApi, VianettApiError
-from urllib2 import URLError, HTTPError
+
+try: # Py3
+    from urllib.request import URLError, HTTPError
+except ImportError: # Py2
+    from urllib2 import URLError, HTTPError
 
 
 class VianettProvider(IProvider):
@@ -45,13 +49,13 @@ class VianettProvider(IProvider):
             message.msgid = self.api.sendmsg(message.dst, message.body, **params)
             return message
         except AssertionError as e:
-            raise exc.RequestError(e.message)
+            raise exc.RequestError(str(e))
         except HTTPError as e:
-            raise exc.MessageSendError(e.message)
+            raise exc.MessageSendError(str(e))
         except URLError as e:
-            raise exc.ConnectionError(e.message)
+            raise exc.ConnectionError(str(e))
         except VianettApiError as e:
-            raise error.VianettProviderError(e.code, e.message)
+            raise error.VianettProviderError(e.code, str(e))
 
     def make_receiver_blueprint(self):
         """ Create the receiver blueprint """
@@ -72,12 +76,12 @@ class VianettProvider(IProvider):
         try:
             return self.api.api_request(method, **params)
         except AssertionError as e:
-            raise exc.RequestError(e.message)
+            raise exc.RequestError(str(e))
         except HTTPError as e:
-            raise exc.MessageSendError(e.message)
+            raise exc.MessageSendError(str(e))
         except URLError as e:
-            raise exc.ConnectionError(e.message)
+            raise exc.ConnectionError(str(e))
         except VianettApiError as e:
-            raise error.VianettProviderError(e.code, e.message)
+            raise error.VianettProviderError(e.code, str(e))
 
     #endregion

@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import urllib
-import urllib2
 from xml.etree import ElementTree
-
 from datetime import datetime
+
+try: # Py3
+    from urllib.request import urlopen, Request
+    from urllib.parse import urlencode
+except ImportError: # Py2
+    from urllib2 import urlopen, Request
+    from urllib import urlencode
 
 from . import const
 
@@ -53,11 +57,11 @@ class VianettHttpApi(object):
         data = {}
         data.update(self._auth)
         data.update(params)
-        post = urllib.urlencode(data)
+        post = urlencode(data)
 
         # Request
-        req = urllib2.Request(url, post)
-        res = urllib2.urlopen(req)
+        req = Request(url, post)
+        res = urlopen(req)
         return res.read()
 
     def api_request(self, method, **params):
@@ -80,7 +84,7 @@ class VianettHttpApi(object):
         try:
             root = ElementTree.fromstring(response)
         except ElementTree.ParseError as e:
-            raise AssertionError('Failed to parse response: {}: {}'.format(e.message, response))
+            raise AssertionError('Failed to parse response: {}: {}'.format(str(e), response))
         assert root.tag == 'ack', 'Invalid response: {}'.format(response)
 
         # Error?
